@@ -14,9 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let pageViewController = DepositsPageViewController()
+        let depositsViewController = DepositsViewController(pageViewController: pageViewController)
+        
+        pageViewController.delegate = depositsViewController
+        
+        let navigationController = UINavigationController.init(rootViewController: depositsViewController)
+        
+        UINavigationBar.appearance().shadowImage = UIImage()
+        
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
